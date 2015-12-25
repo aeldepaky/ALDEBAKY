@@ -10,7 +10,7 @@ namespace AddonTemplate
     {
         // Change this line to the champion you want to make the addon for,
         // watch out for the case being correct!
-        public const string ChampName = "ChampionName, example Annie or Teemo";
+        public const string ChampName = "MissFortune";
 
         public static void Main(string[] args)
         {
@@ -40,7 +40,14 @@ namespace AddonTemplate
         private static void OnDraw(EventArgs args)
         {
             // Draw range circles of our spells
-            Circle.Draw(Color.Red, SpellManager.Q.Range, Player.Instance.Position);
+            if(Settings._drawQ.CurrentValue)
+                Circle.Draw(Color.Red, SpellManager.Q.Range, Player.Instance.Position);
+            if (Settings._drawW.CurrentValue)
+                Circle.Draw(Color.Aqua, SpellManager.W.Range, Player.Instance.Position);
+            if (Settings._drawE.CurrentValue)
+                Circle.Draw(Color.DarkGreen, SpellManager.E.Range, Player.Instance.Position);
+            if (Settings._drawR.CurrentValue)
+                Circle.Draw(Color.DarkOrange, SpellManager.R.Range, Player.Instance.Position);
             // TODO: Uncomment if you want those enabled aswell, but remember to enable them
             // TODO: in the SpellManager aswell, otherwise you will get a NullReferenceException
             //Circle.Draw(Color.Red, SpellManager.W.Range, Player.Instance.Position);
